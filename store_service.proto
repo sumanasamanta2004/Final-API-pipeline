@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package store;
+
+service StoreService {
+  rpc SaveRegress (RegressRequest) returns (SaveResponse);
+  rpc SaveClassify (ClassifyRequest) returns (SaveResponse);
+}
+
+message RegressRequest {
+  string model_name = 1;
+  repeated float features = 2;
+  float predicted_value = 3;
+}
+
+message ClassifyRequest {
+  string model_name = 1;
+  repeated float features = 2;
+  string predicted_label = 3;
+}
+
+message SaveResponse {
+  bool success = 1;
+  string message = 2;
+}
